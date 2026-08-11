@@ -1,0 +1,12 @@
+# Diese Funktion erlaubt es mit "up N" N Verzeichnisse auf einmal nach oben zu springen
+
+function up {
+[ "${1/[^0-9]/}" == "$1" ] && {
+        local ups=""
+        for i in $(seq 1 $1)
+        do
+                ups=$ups"../"
+        done
+        cd $ups
+        } || echo "usage: up INTEGER"
+}

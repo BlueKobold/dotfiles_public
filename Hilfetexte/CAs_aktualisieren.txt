@@ -1,0 +1,3 @@
+Da das Paket ca-certificates in den Paketquellen nur gelegentlich Updates erhält, gibt es die Möglichkeit global installierte CA-Zertifikate selbst auf den neuesten Stand zu bringen:
+
+sudo update-ca-certificates -f 

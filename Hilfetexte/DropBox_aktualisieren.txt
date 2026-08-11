@@ -1,0 +1,8 @@
+##	stoppt den Dienst
+$ dropbox stop
+
+## 	Löscht die veralteten Hintergrunddienst-Dateien. Die eigentlichen Daten von Dropbox ##	werden nicht angefasst.
+$ rm -rf ~/.dropbox-dist
+
+## startet den Dienst neu und lädt die aktuellen Hintergrunddienst-Dateien.
+$ dropbox start -i        

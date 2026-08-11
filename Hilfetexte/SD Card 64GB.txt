@@ -1,0 +1,3 @@
+https://wiki.ubuntuusers.de/exFAT/
+
+sudo apt-get install exfat-fuse exfat-utils

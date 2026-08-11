@@ -1,0 +1,84 @@
+SSH
+
+https://wiki.ubuntuusers.de/SSH/
+--
+
+Den ECDSA-Fingerprint eines Servers kann man mit dem Systemprogramm ssh-keygen erfahren:
+
+ENTER in Terminal: ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key.pub -l
+
+gibt den Fingerprint und einige weitere Informationen aus, z.B. 
+256 b5:0e:ec:b7:16:06:e6:24:a6:39:18:58:4e:ec:3b:d1 root@server (ECDSA).
+--
+
+.ssh/config
+
+Wenn man sich auf der Konsole mit einem anderen Server verbinden möchte, muss man evtl. z.B. Port und Benutzernamen angeben. Um das Ganze zu vereinfachen, kann man Voreinstellungen für ssh in der config-Datei $HOME/.ssh/config hinterlegen. Hier ein Beispiel:
+
+
+# ssh (secure shell) configuration file: ~/.ssh/config
+Host test1
+    HostName 123.456.789.0
+    Port 980
+    User MeinBenutzerName
+
+Host test2
+    HostName test.mynet.local
+    User test
+    CheckHostIP no
+    Cipher blowfish
+
+Host foobar
+    HostName domain.tld
+    Port 55550
+    User fanta
+    IdentityFile ~/.ssh/private_ssh_key_rsa
+Nun braucht man nicht mehr
+
+ENTER in Terminal: ssh MeinBenutzerName@123.456.789.0 -p980
+
+zu schreiben, es reicht nun ein kurzes
+
+ENTER in Terminal: ssh test1
+
+für einen Verbindungsaufbau. Alle Parameter, die man verwenden kann, findet man unter openbsd.org {en} oder in der Manpages von ssh_config.
+--
+
+Authentifizierung über Public-Keys
+
+Schluessel erstellen --> ENTER in Terminal: ssh-keygen -t rsa -b 4096
+Schluessel ubertragen --> ENTER in Terminal: ssh-copy-id -i ~/.ssh/id_rsa.pub user@server
+Anmelden mit --> ENTER in Terminal: ssh user@server
+--
+
+Offending Keys - Die Fehlermeldung
+
+Warning: the ECDSA host key for 'SERVER_IP' differs from the key for the IP address '123.123.123.123'
+Offending key for IP in /home/BENUTZER/.ssh/known_hosts:3
+Matching host key in /home/BENUTZER/.ssh/known_hosts:1
+Are you sure you want to continue connecting (yes/no)? yes
+durch eine geänderte IP kann man durch den Einzeiler
+
+ENTER in Terminal: sed -i '3d' /home/BENUTZER/.ssh/known_hosts
+
+beheben. Dadurch wird der betroffene Eintrag entfernt.
+--
+
+WebDAV	dav://login@example.com/ordner bzw. davs://login:passwort@example.com
+
+SSH	ssh://benutzer@server:port/pfad/ordner
+(Angabe der Portnummer nur erforderlich, wenn diese vom Standardport 22 abweicht)
+
+sftp	sftp://benutzer:passwort@server:port	Siehe SSH
+--
+
+SCP - Kopieren mit SSH
+
+ENTER in Terminal: scp benutzerx@server1:datei1 datei2 benutzery@server2:
+
+Den Doppelpunkt am Ende nicht vergessen ;)
+
+In diesem Beispiel wurde die datei1 aus dem Homeverzeichnis von benutzerx auf server1 und die datei2 aus 
+dem aktuellen Verzeichnis des lokalen Hosts in das Homeverzeichnis von benutzery auf server2 kopiert.
+--
+

@@ -1,0 +1,29 @@
+[user]
+	email = hmbluesky@gmx.net
+	name = Blue Sky
+
+[color]
+	ui = auto
+
+[merge]
+	tool = meld
+
+[mergetool "meld"]
+	# choose one of the following 2 lines
+	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+	#cmd = meld "$LOCAL" $BASE" "$REMOTE" --output "$MERGED"
+	#
+[diff]
+	tool = meld
+
+[difftool "meld"]
+	cmd = "$LOCAL" "$REMOTE"
+
+[push]
+	default = simple
+[credential]
+	# set git to use the credential memory cache
+	# set the cache to timeout after 6 hour (setting is in seconds)
+	helper = cache --timeout=21600
+
+	

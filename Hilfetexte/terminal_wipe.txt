@@ -1,0 +1,2 @@
+wipe -q -Q 1 -R /dev/zero -S r -r $PFAD
+

@@ -1,0 +1,32 @@
+https://wiki.ubuntuusers.de/SSL/
+
+OpenSSL installieren
+apt install openssl
+
+Als root arbeiten, am besten direkt in /etc/ssl/private
+sudo -i
+
+Einen neuen privaten Schluessel erstellen
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -out /etc/ssl/private/NEUER.key
+
+Darauf achten das die Datei nur von root zu lesen ist.
+chmod 400 NEUER.key
+
+Ein CSR mit dem neuen Schluessel erstellen
+openssl req -new -sha256 -key NEUER.key -out NEUER.csr
+
+Country Name: DE, City: Munich, FQDN ist wichtig!, Email Address: webmaster@something.org
+
+Zertifikat selber unterschreiben
+openssl x509 -req -days 1900 -in NEUER.csr -signkey NEUER.key -sha256 -out NEUER.pem
+
+Text in Datei lesbar machen mit:
+openssl x509 -text -in NEUER.pem
+--
+
+SSL-CERT
+
+make-ssl-cert generate-default-snakeoil --force-overwrite
+--
+
+

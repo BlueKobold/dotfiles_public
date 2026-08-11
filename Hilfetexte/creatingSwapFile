@@ -1,0 +1,27 @@
+# stopping all swap
+sudo swapoff -a
+
+# will create a 8 GiB swap file
+# sudo fallocate -l 8g /mnt/8GiB.swap
+
+# if "fallocate" fails --> 
+
+# reccomended!!! but slow! creating a 8GiB swap file
+sudo dd if=/dev/zero of=/mnt/8GiB.swap bs=1024 count=8129 status=progress
+
+# set permissions to root
+sudo chown root:disk /mnt/8GiB.swap
+sudo chmod 600 /mnt/8Gib.swap
+
+# format swap file
+sudo mkswap /mnt/8GiB.swap
+
+# enable swap file
+sudo swapon /mnt/8GiB.swap
+
+# check with:
+cat /proc/swaps
+
+# enable swap file on boot aka write entry to /etc/fstab
+echo '/mnt/8GiB.swap none swap defaults 0 0' | sudo tee -a /etc/fstab
+
