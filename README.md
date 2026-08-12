@@ -1,6 +1,6 @@
-# Meine Dotfiles
+# My Dotfiles
 
-Dieses Repository enthält meine öffentlichen Konfigurationsdateien sowie einige Hilfetexte
+This repository contains my public configuration files and some helpfull text files.
 
 ## Installation
 
@@ -10,13 +10,13 @@ bash
 cd ~/dotfiles_public 
 ./install.sh
 
-## Enthaltene Konfigurationen
+## Included configurations
 
 - `.vimrc`- VimEditor
 - `.bashrc`- Bash Shell
-- `gitconfig - Git globale Einstellungen
+- `.gitconfig` - Git globale Einstellungen
 - `.tmux.conf`- Tmux
 
-## Sicherheitshinweis
+## Safty Note 
 
-Sensible Daten wurden entfernt. Für private Konfigurationsdateien nutze ein separates, privates Repository.
+Sensitive data has been removed. Use a separate, private repository for private configuration files.
